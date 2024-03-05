@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "ReFryIt",
+  "description": "Grab highlighted texts on the web and archieve it.",
+  "version": "1.0",
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "hello_extensions.png"
+  }
+}
