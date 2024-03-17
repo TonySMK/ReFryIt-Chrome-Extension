@@ -3,8 +3,11 @@
   "name": "ReFryIt",
   "description": "Grab highlighted texts on the web and archieve it.",
   "version": "1.0",
+  "background": { "service_worker": "service_worker.js", "type": "module" },
   "action": {
-    "default_popup": "index.html",
-    "default_icon": "hello_extensions.png"
-  }
+    "default_popup": "./popup/index.html",
+    "default_icon": "tin-can-icon.png"
+  },
+  "permissions": ["scripting"],
+  "host_permissions": ["http://*/*", "https://*/*"]
 }
