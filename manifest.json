@@ -3,11 +3,20 @@
   "name": "ReFryIt",
   "description": "Grab highlighted texts on the web and archieve it.",
   "version": "1.0",
-  "background": { "service_worker": "service_worker.js", "type": "module" },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
   "action": {
-    "default_popup": "./popup/popup.html",
+    "default_popup": "./popup.html",
     "default_icon": "view-details-512.png"
   },
-  "permissions": ["scripting"],
-  "host_permissions": ["http://*/*", "https://*/*"]
+  "permissions": ["activeTab", "scripting", "tabs", "contextMenus", "storage"],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content_script.js"]
+    }
+  ]
 }
