@@ -1,22 +1,24 @@
 console.log(" FROM BACKGROUND/service worker");
 
-console.log(this);
-
 chrome.contextMenus.create({
   id: "tldasdasd",
   title: "locale",
   contexts: ["selection"],
 });
 
-// chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-//   console.log(request);
-//   console.log(sender);
-//   console.log(sendResponse);
-//   // let passage = chrome.contextMenus.onClicked.addListener((clickdata) => {
-//   //   return clickdata;
-//   // });
-//   sendResponse({ data: "fdfsdfs" });
-// });
+chrome.contextMenus.onClicked.addListener((clickdata) => {
+  console.log(clickdata);
+});
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  console.log(request);
+  console.log(sender);
+  console.log(sendResponse);
+  // let passage = chrome.contextMenus.onClicked.addListener((clickdata) => {
+  //   return clickdata;
+  // });
+  sendResponse({ data: "fdfsdfs" });
+});
 
 // chrome.runtime.sendMessage(
 //   { greeting: ["sdfsfds", "3123123132", "2312321"] },

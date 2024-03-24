@@ -1,11 +1,11 @@
 console.log("FROM CONTENT SCRIPTS");
 
-// chrome.runtime.sendMessage(
-//   { greeting: ["sdfsfds", "3123123132", "2312321"] },
-//   (response) => {
-//     console.log(response);
-//   }
-// );
+chrome.runtime.sendMessage(
+  { greeting: ["sdfsfds", "3123123132", "2312321"] },
+  (response) => {
+    console.log(response);
+  }
+);
 
 // chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 //   console.log(
