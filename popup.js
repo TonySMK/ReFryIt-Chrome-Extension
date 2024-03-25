@@ -12,6 +12,8 @@ const fromgroup = document.getElementById("fromgroup");
 const formdomain = document.getElementById("formdomain");
 const formdomainpath = document.getElementById("formdomainpath");
 
+const somedata = [];
+// let somedata;
 // -------------------------------------------------
 // EventListener for submittion button
 somebutton.addEventListener("click", (e) => {
@@ -32,6 +34,8 @@ somebutton.addEventListener("click", (e) => {
   };
 
   postfetch(dataobject);
+
+  window.close();
 });
 
 function postfetch(dataobject) {
@@ -46,22 +50,46 @@ function postfetch(dataobject) {
     })
     .catch((error) => console.log(error));
 }
+// -------------------------------------------------
 
 let getinfobutton = document.querySelector(".getinfobutton");
 
 getinfobutton.addEventListener("click", (e) => {
   console.log("you clicked getinfobutton!");
-  chrome.runtime.sendMessage({ greeting: "form popup.js" }, (response) => {
-    console.log(response);
-  });
 
-  setstorage();
+  chrome.runtime.sendMessage({ type: "getSessionStorage" }, (response) => {
+    // here wer have stored the response to a globally scoped variable
+    // console.log(response);
+
+    // for (let i = 0; i)
+    // for (const property in response) {
+    //   console.log(`${property}: ${response[property]}`);
+
+    //   // instead of pushing the objects into an array, we might be able to
+    //   // assign each value to an input element
+    //   somedata.push({ property: response[property] });
+    //   console.log(somedata); // instead ofs
+    // }
+
+    console.log(Object.keys(response).length);
+    moveData(response);
+  });
 });
 
-function setstorage() {
-  chrome.storage.sync.set({ minutes: 30 });
-}
 // -------------------------------------------------
+function moveData(reponseData) {
+  for (let i = 0; i < 1; i++) {
+    // console.log("sdasda");
+    for (const property in reponseData) {
+      console.log(`${property}: ${reponseData[property]}`);
+
+      // instead of pushing the objects into an array, we might be able to
+      // assign each value to an input element
+      somedata.push(reponseData[property]);
+    }
+    console.log(somedata); // instead ofs
+  }
+}
 
 // async function somefunction() {}
 
