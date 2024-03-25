@@ -12,6 +12,8 @@ const fromgroup = document.getElementById("fromgroup");
 const formdomain = document.getElementById("formdomain");
 const formdomainpath = document.getElementById("formdomainpath");
 
+// -------------------------------------------------
+// EventListener for submittion button
 somebutton.addEventListener("click", (e) => {
   e.preventDefault();
 
@@ -44,18 +46,22 @@ function postfetch(dataobject) {
     })
     .catch((error) => console.log(error));
 }
-// async function postfetch(dataobject) {
-//   try {
-//     const response = await fetch("http://localhost:8080/api/highlights", {
-//       method: "POST",
-//       body: JSON.stringify(dataobject),
-//     });
-//     const result = await response.json();
-//     console.log("Success:", result);
-//   } catch (error) {
-//     console.error("Error:", error);
-//   }
-// }
+
+let getinfobutton = document.querySelector(".getinfobutton");
+
+getinfobutton.addEventListener("click", (e) => {
+  console.log("you clicked getinfobutton!");
+  chrome.runtime.sendMessage({ greeting: "form popup.js" }, (response) => {
+    console.log(response);
+  });
+
+  setstorage();
+});
+
+function setstorage() {
+  chrome.storage.sync.set({ minutes: 30 });
+}
+// -------------------------------------------------
 
 // async function somefunction() {}
 

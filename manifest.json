@@ -12,11 +12,5 @@
     "default_icon": "view-details-512.png"
   },
   "permissions": ["activeTab", "scripting", "tabs", "contextMenus", "storage"],
-  "host_permissions": ["http://*/*", "https://*/*"],
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content_script.js"]
-    }
-  ]
+  "host_permissions": ["http://*/*", "https://*/*"]
 }

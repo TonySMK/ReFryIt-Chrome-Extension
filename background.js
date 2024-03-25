@@ -8,6 +8,15 @@ chrome.contextMenus.create({
 
 chrome.contextMenus.onClicked.addListener((clickdata) => {
   console.log(clickdata);
+  if (clickdata) {
+    chrome.storage.session.sync.set(clickdata).then((res) => {
+      console.log(res);
+    });
+  }
+
+  // chrome.storage.session.sync.get(["pageUrl"]).then((result) => {
+  //   console.log("Value is " + result.key);
+  // });
 });
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -17,8 +26,15 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   // let passage = chrome.contextMenus.onClicked.addListener((clickdata) => {
   //   return clickdata;
   // });
-  sendResponse({ data: "fdfsdfs" });
+  sendResponse({ greeting2: "hello from background.js" });
 });
+
+// chrome.action.onClicked.addListener((tab) => {
+//   chrome.scripting.executeScript({
+//     target: { tabId: tab.id },
+//     files: ["content_scripts.js"],
+//   });
+// });
 
 // chrome.runtime.sendMessage(
 //   { greeting: ["sdfsfds", "3123123132", "2312321"] },
