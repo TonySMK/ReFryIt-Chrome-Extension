@@ -40,6 +40,7 @@ right text to open "context menu", then click on tab called "locale" with the pu
 3.Then click on the "submit" button
 
 4. If submition is successful, you should be able to see the new entry in the ReFryIt webpage after refreshing the page.
+    If submition is unsuccessful, you probably need to refresh the page and repeat step 1 and 2 again.
 
 
 ## Features
