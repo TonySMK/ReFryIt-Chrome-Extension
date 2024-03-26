@@ -11,9 +11,8 @@ const formhighlight = document.getElementById("formhighlight");
 const fromgroup = document.getElementById("fromgroup");
 const formdomain = document.getElementById("formdomain");
 const formdomainpath = document.getElementById("formdomainpath");
+const formfavicon = document.getElementById("favicon");
 
-const somedata = [];
-// let somedata;
 // -------------------------------------------------
 // EventListener for submittion button
 somebutton.addEventListener("click", (e) => {
@@ -24,6 +23,7 @@ somebutton.addEventListener("click", (e) => {
   const fromGroupValue = fromgroup.value;
   const formDomainValue = formdomain.value;
   const formDomainPathValue = formdomainpath.value;
+  const formfaviconValue = formfavicon.value;
 
   dataobject = {
     title: formTitleValue,
@@ -31,6 +31,9 @@ somebutton.addEventListener("click", (e) => {
     group_id: fromGroupValue,
     domain: formDomainValue,
     domain_path: formDomainPathValue,
+    favicon_url: formfaviconValue,
+    star_status: 0,
+    visit_count: 0,
   };
 
   postfetch(dataobject);
@@ -56,26 +59,38 @@ let getinfobutton = document.querySelector(".getinfobutton");
 
 getinfobutton.addEventListener("click", (e) => {
   console.log("you clicked getinfobutton!");
+  try {
+    chrome.runtime.sendMessage({ type: "getSessionStorage" }, (response) => {
+      console.log(response);
 
-  chrome.runtime.sendMessage({ type: "getSessionStorage" }, (response) => {
-    // here wer have stored the response to a globally scoped variable
-    console.log(Object.keys(response).length);
-    moveData(response);
-  });
+      formhighlight.setAttribute("value", response.selectionText);
+    });
+
+    chrome.runtime.sendMessage({ type: "getPageContent" }, (response) => {
+      console.log(response);
+
+      formtitle.setAttribute("value", response.title);
+      formdomain.setAttribute("value", getJustDomain(response.url));
+      formdomainpath.setAttribute("value", getJustDomainPath(response.url));
+      formfavicon.setAttribute("value", response.favIconUrl);
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // -------------------------------------------------
 
-let getcontentinfobutton = document.querySelector(".getcontentinfobutton");
+// let getcontentinfobutton = document.querySelector(".getcontentinfobutton");
 
-getcontentinfobutton.addEventListener("click", (e) => {
-  console.log("you clicked getcontentinfobutton!");
+// getcontentinfobutton.addEventListener("click", (e) => {
+//   console.log("you clicked getcontentinfobutton!");
 
-  chrome.runtime.sendMessage({ type: "getPageContent" }, (response) => {
-    // here wer have stored the response to a globally scoped variable
-    console.log(response);
-  });
-});
+//   chrome.runtime.sendMessage({ type: "getPageContent" }, (response) => {
+//     // here wer have stored the response to a globally scoped variable
+//     console.log(response);
+//   });
+// });
 
 // -------------------------------------------------
 function moveData(reponseData) {
@@ -90,4 +105,15 @@ function moveData(reponseData) {
     }
     console.log(somedata); // instead ofs
   }
+}
+
+function getJustDomainPath(aString) {
+  let array = aString.split("/").slice(3).join("/");
+  let finalPathSting = `/${array}`;
+  return finalPathSting;
+}
+
+function getJustDomain(aString) {
+  let finalDomainSting = aString.split("/").slice(0, 3).join("/");
+  return finalDomainSting;
 }
