@@ -29,11 +29,13 @@ Ref: https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-wor
     https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#pin_the_extension
 
 Chrome Extension Usage:
-1. Highlight any piece of text or a few sentances from any webpage, right text to open "context menu", then click on tab called "locale" with the puzzel piece icon
+1. Highlight any piece of text or a few sentances from any webpage,
+right text to open "context menu", then click on tab called "locale" with the puzzel piece icon
 
 2.Now, click on the Chrome extension icon in the Extension Bar
     Click on the "get info" button, in the teal/greenish pop-up.
-    After clicking this button all input fields on that pop-up should be filled out, if not you will need to repeat step 1
+    After clicking this button all input fields on that pop-up should be filled out,
+    if not you will need to repeat step 1
     You have the chose to edit the group number and... any other input field text
 3.Then click on the "submit" button
 
