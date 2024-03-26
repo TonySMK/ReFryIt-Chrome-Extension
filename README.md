@@ -30,17 +30,19 @@ Ref: https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-wor
 
 Chrome Extension Usage:
 1. Highlight any piece of text or a few sentances from any webpage,
-right text to open "context menu", then click on tab called "locale" with the puzzel piece icon
+    right text to open "context menu", then click on tab called "locale" with the puzzel piece icon
 
 2.Now, click on the Chrome extension icon in the Extension Bar
     Click on the "get info" button, in the teal/greenish pop-up.
     After clicking this button all input fields on that pop-up should be filled out,
     if not you will need to repeat step 1
     You have the chose to edit the group number and... any other input field text
+
 3.Then click on the "submit" button
 
 4. If submition is successful, you should be able to see the new entry in the ReFryIt webpage after refreshing the page.
-    If submition is unsuccessful, you probably need to refresh the page and repeat step 1 and 2 again.
+    If submition is unsuccessful, you probably need to refresh the page and clear any extension error on extension page, then repeat step 1 and 2 again.
+    https://developer.chrome.com/docs/extensions/get-started/tutorial/debug#prereq
 
 
 ## Features
