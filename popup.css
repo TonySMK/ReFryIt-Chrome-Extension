@@ -1,0 +1,9 @@
+body {
+  background-color: aquamarine;
+}
+
+#webpageselectionform {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
