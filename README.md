@@ -29,7 +29,7 @@ Ref: https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-wor
     https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#pin_the_extension
 
 Chrome Extension Usage:
-
+```bash
 1. Highlight any piece of text or a few sentances from any webpage, right text to open "context menu", then click on tab called "locale" with the puzzel piece icon
 
 2.Now, click on the Chrome extension icon in the Extension Bar
