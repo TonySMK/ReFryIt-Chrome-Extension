@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./popup.css" />
+    <title>ReFryIt</title>
+  </head>
+  <body>
+    <header>Hello from the popup/popup.html</header>
+    <form id="webpageselectionform">
+      <label for="formtitle">title:</label>
+      <input name="formtitle" id="formtitle" type="text" />
+
+      <label for="formhighlight">highlighted text:</label>
+      <input name="formhighlight" id="formhighlight" type="text" />
+
+      <label for="fromgroup">Group</label>
+      <select name="fromgroup" id="fromgroup">
+        <!-- the items in the drop down list will be dynamically created-->
+        <option value="1">one</option>
+        <option value="2">two</option>
+        <option value="3">three</option>
+        <option value="4">four</option>
+      </select>
+
+      <label for="formdomain">domain:</label>
+      <input name="formdomain" id="formdomain" type="text" />
+
+      <label for="formdomainpath">domain path:</label>
+      <input name="formdomainpath" id="formdomainpath" type="text" />
+
+      <label for="favicon">favicon url:</label>
+      <input name="favicon" id="favicon" type="text" />
+
+      <button class="getpassagebutton">submit</button>
+    </form>
+    <hr />
+    <button class="getinfobutton">get info</button>
+    <hr />
+    <div id="somepassage"></div>
+  </body>
+  <script src="./popup.js"></script>
+</html>
