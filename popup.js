@@ -1,17 +1,15 @@
 console.log("FROM POPUP");
 const somebutton = document.querySelector(".getpassagebutton");
-// console.log(somebutton);
-
 const placeholder = document.querySelector(".somepassage");
-
-let form = document.querySelector(".formtag");
-
+const form = document.querySelector(".formtag");
 const formtitle = document.getElementById("formtitle");
 const formhighlight = document.getElementById("formhighlight");
 const fromgroup = document.getElementById("fromgroup");
 const formdomain = document.getElementById("formdomain");
 const formdomainpath = document.getElementById("formdomainpath");
 const formfavicon = document.getElementById("favicon");
+const somepassage = document.getElementById("somepassage");
+const getinfobutton = document.querySelector(".getinfobutton");
 
 // -------------------------------------------------
 // EventListener for submittion button
@@ -41,22 +39,7 @@ somebutton.addEventListener("click", (e) => {
   window.close();
 });
 
-function postfetch(dataobject) {
-  fetch("http://localhost:8080/api/highlights", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(dataobject),
-  })
-    .then((res) => {
-      console.log(res);
-      console.log("created!");
-    })
-    .catch((error) => console.log(error));
-}
 // -------------------------------------------------
-
-let getinfobutton = document.querySelector(".getinfobutton");
-
 getinfobutton.addEventListener("click", (e) => {
   console.log("you clicked getinfobutton!");
   try {
@@ -64,6 +47,7 @@ getinfobutton.addEventListener("click", (e) => {
       console.log(response);
 
       formhighlight.setAttribute("value", response.selectionText);
+      somepassage.innerText = response.selectionText;
     });
 
     chrome.runtime.sendMessage({ type: "getPageContent" }, (response) => {
@@ -80,31 +64,17 @@ getinfobutton.addEventListener("click", (e) => {
 });
 
 // -------------------------------------------------
-
-// let getcontentinfobutton = document.querySelector(".getcontentinfobutton");
-
-// getcontentinfobutton.addEventListener("click", (e) => {
-//   console.log("you clicked getcontentinfobutton!");
-
-//   chrome.runtime.sendMessage({ type: "getPageContent" }, (response) => {
-//     // here wer have stored the response to a globally scoped variable
-//     console.log(response);
-//   });
-// });
-
-// -------------------------------------------------
-function moveData(reponseData) {
-  for (let i = 0; i < 1; i++) {
-    // console.log("sdasda");
-    for (const property in reponseData) {
-      console.log(`${property}: ${reponseData[property]}`);
-
-      // instead of pushing the objects into an array, we might be able to
-      // assign each value to an input element
-      somedata.push(reponseData[property]);
-    }
-    console.log(somedata); // instead ofs
-  }
+function postfetch(dataobject) {
+  fetch("http://localhost:8080/api/highlights", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(dataobject),
+  })
+    .then((res) => {
+      console.log(res);
+      console.log("created!");
+    })
+    .catch((error) => console.log(error));
 }
 
 function getJustDomainPath(aString) {
