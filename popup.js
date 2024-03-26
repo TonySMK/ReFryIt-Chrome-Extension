@@ -71,14 +71,10 @@ let getcontentinfobutton = document.querySelector(".getcontentinfobutton");
 getcontentinfobutton.addEventListener("click", (e) => {
   console.log("you clicked getcontentinfobutton!");
 
-  chrome.runtime.sendMessage(
-    {
-      type: "sendPageContent",
-    },
-    (response) => {
-      console.log(response);
-    }
-  );
+  chrome.runtime.sendMessage({ type: "getPageContent" }, (response) => {
+    // here wer have stored the response to a globally scoped variable
+    console.log(response);
+  });
 });
 
 // -------------------------------------------------

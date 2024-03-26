@@ -15,10 +15,6 @@ chrome.contextMenus.onClicked.addListener((clickdata) => {
 });
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  // this block listens for a message call, if messsage call has correct
-  // request.type, then it* will then pase the chrome.ext storage api
-  // and then send the parsed object back to popup.js as the reponse
-
   if (request.type === "getSessionStorage") {
     chrome.storage.session.get(null, function (result) {
       // this "null" refers to getting the entire content of the storage scope
@@ -31,9 +27,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  if (request.type === "sendPageContent") {
-    console.log(request);
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.type === "getPageContent") {
+    // console.log(request);
     getCurrentTab().then((res) => {
       // console.log(res);
       sendResponse(res);
