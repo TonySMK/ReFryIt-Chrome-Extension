@@ -19,20 +19,33 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   // request.type, then it* will then pase the chrome.ext storage api
   // and then send the parsed object back to popup.js as the reponse
 
-  // console.log(request);
-  // console.log(sender);
-  // console.log(sendResponse);
-
   if (request.type === "getSessionStorage") {
     chrome.storage.session.get(null, function (result) {
       // this "null" refers to getting the entire content of the storage scope
       sendResponse(result);
+      console.log(result);
     });
     // Return true to indicate that sendResponse will be called asynchronously
     return true;
     // sendResponse({ greeting2: "hello from background.js" });
   }
 });
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.type === "sendPageContent") {
+    console.log(request);
+    getCurrentTab().then((res) => {
+      // console.log(res);
+      sendResponse(res);
+    });
+    // getCurrentTab().then(sendResponse);
+    // sendResponse(getCurrentTab());
+    // return true;
+  }
+  return true;
+});
+
+//----------------------------------------------------
 
 async function setstorageTest(object) {
   try {
@@ -45,13 +58,12 @@ async function setstorageTest(object) {
   }
 }
 
-// async function getstorageTest() {
-//   try {
-//     await chrome.storage.session.get("selectionText").then((res) => {
-//       console.log(res);
-//     });
-//     // console.log(result);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+async function getCurrentTab() {
+  // lifted from chrome extension docs
+  let queryOptions = { active: true, lastFocusedWindow: true };
+  // `tab` will either be a `tabs.Tab` instance or `undefined`.
+  let [tab] = await chrome.tabs.query(queryOptions);
+
+  // console.log(tab);
+  return tab;
+}

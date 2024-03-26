@@ -59,21 +59,26 @@ getinfobutton.addEventListener("click", (e) => {
 
   chrome.runtime.sendMessage({ type: "getSessionStorage" }, (response) => {
     // here wer have stored the response to a globally scoped variable
-    // console.log(response);
-
-    // for (let i = 0; i)
-    // for (const property in response) {
-    //   console.log(`${property}: ${response[property]}`);
-
-    //   // instead of pushing the objects into an array, we might be able to
-    //   // assign each value to an input element
-    //   somedata.push({ property: response[property] });
-    //   console.log(somedata); // instead ofs
-    // }
-
     console.log(Object.keys(response).length);
     moveData(response);
   });
+});
+
+// -------------------------------------------------
+
+let getcontentinfobutton = document.querySelector(".getcontentinfobutton");
+
+getcontentinfobutton.addEventListener("click", (e) => {
+  console.log("you clicked getcontentinfobutton!");
+
+  chrome.runtime.sendMessage(
+    {
+      type: "sendPageContent",
+    },
+    (response) => {
+      console.log(response);
+    }
+  );
 });
 
 // -------------------------------------------------
@@ -90,16 +95,3 @@ function moveData(reponseData) {
     console.log(somedata); // instead ofs
   }
 }
-
-// async function somefunction() {}
-
-// button.addEventListener("click", () => {
-//   chrome.runtime.sendMessage({ data: ["one", "two", "three"] }, (response) => {
-//     console.log(response);
-//     placeholder.innerText = response;
-//   });
-// });
-
-// chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-//   chrome.tabs.sendMessage(tabs[0].id, { greeting: "Hello from popup.js!" });
-// });
