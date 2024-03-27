@@ -1,9 +1,11 @@
 console.log(" FROM BACKGROUND/service worker");
 
-chrome.contextMenus.create({
-  id: "tldasdasd",
-  title: "locale",
-  contexts: ["selection"],
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.contextMenus.create({
+    id: "tldasdasd",
+    title: "locale",
+    contexts: ["selection"],
+  });
 });
 
 chrome.contextMenus.onClicked.addListener((clickdata) => {
